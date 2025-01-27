@@ -27,7 +27,7 @@ const NextPage = () => {
     hr: "HR Analysis Agent",
     psychometric: "Psychometric Analysis Agent",
   };
-  
+
   const agentIds = {
     SLACK_ANALYSIS_AGENT: "6791e74e61f92e3cfefe1a6d",
     ZOOM_ANALYSIS_AGENT: "6791e7f961f92e3cfefe1a8f",
@@ -152,7 +152,8 @@ const NextPage = () => {
             <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-purple-500"></div>
             <div className="text-center space-y-4">
               <p className="text-lg font-semibold text-purple-600">
-                Currently processing: {agentNames[currentAgent] || "Initializing..."}
+                {/* Currently processing: {agentNames[currentAgent] || "Initializing..."} */}
+                Processing 
               </p>
               <div className="space-y-2">
                 {Object.entries(agentNames).map(([key, name]) => (
