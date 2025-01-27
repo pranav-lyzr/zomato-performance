@@ -14,10 +14,20 @@ const NextPage = () => {
   const [allResponsesReceived, setAllResponsesReceived] = useState(false);
   const [loading, setLoading] = useState(true); // Loader state
   const [error, setError] = useState(""); // Validation error state
+  const [currentAgent, setCurrentAgent] = useState("");
+  const [completedAgents, setCompletedAgents] = useState([]);
 
   const apiUrl = "https://agent.api.lyzr.app/v2/chat/";
   const lyzrApiKey = "lyzr-eH51wUqvcJY5fRl9yFZihZIx";
 
+  const agentNames = {
+    slack: "Slack Analysis Agent",
+    zoom: "Zoom Analysis Agent",
+    manager: "Manager Assessment Agent",
+    hr: "HR Analysis Agent",
+    psychometric: "Psychometric Analysis Agent",
+  };
+  
   const agentIds = {
     SLACK_ANALYSIS_AGENT: "6791e74e61f92e3cfefe1a6d",
     ZOOM_ANALYSIS_AGENT: "6791e7f961f92e3cfefe1a8f",
@@ -41,6 +51,7 @@ const NextPage = () => {
 
       async function makeApiCall(agentId, message, key) {
         try {
+          setCurrentAgent(key);
           const response = await fetch(apiUrl, {
             method: "POST",
             headers: {
@@ -65,6 +76,7 @@ const NextPage = () => {
             return updatedResponses;
           });
 
+          setCompletedAgents((prev) => [...prev, key]);
           responseCount++;
           if (responseCount === totalResponses) {
             setLoading(false);
@@ -136,8 +148,42 @@ const NextPage = () => {
 
         {/* Loader */}
         {loading ? (
-          <div className="flex justify-center items-center h-full min-h-[200px]">
+          <div className="flex flex-col items-center justify-center space-y-6 min-h-[200px]">
             <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-purple-500"></div>
+            <div className="text-center space-y-4">
+              <p className="text-lg font-semibold text-purple-600">
+                Currently processing: {agentNames[currentAgent] || "Initializing..."}
+              </p>
+              <div className="space-y-2">
+                {Object.entries(agentNames).map(([key, name]) => (
+                  <div
+                    key={key}
+                    className="flex items-center space-x-2 text-sm"
+                  >
+                    <span
+                      className={`w-4 h-4 rounded-full ${
+                        completedAgents.includes(key)
+                          ? "bg-green-500"
+                          : currentAgent === key
+                          ? "bg-purple-500 animate-pulse"
+                          : "bg-gray-300"
+                      }`}
+                    ></span>
+                    <span
+                      className={
+                        completedAgents.includes(key)
+                          ? "text-green-600"
+                          : currentAgent === key
+                          ? "text-purple-600"
+                          : "text-gray-500"
+                      }
+                    >
+                      {name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         ) : (
           // Form displayed only when loading is false
@@ -152,6 +198,7 @@ const NextPage = () => {
                 onChange={(e) => setZomatoPerformance(e.target.value)}
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="Employee Performance Analyst Agent"
+                style={{ height: "60vh" }}
               />
               {error && (
                 <p className="text-red-500 text-sm mt-1">{error}</p>

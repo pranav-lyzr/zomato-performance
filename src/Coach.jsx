@@ -117,7 +117,7 @@ const Coach = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      <h1 className="text-3xl font-bold pl-80 pt-3 pb-0">Things to Work On</h1>
+      <h1 className="text-3xl font-bold pl-80 pt-3 pb-0">AI Coach</h1>
       <div className="flex-1 w-full mx-auto p-4 flex flex-col pl-80">
         <div className="bg-white rounded-lg shadow-lg flex-1 flex flex-col overflow-hidden">
           <div className="bg-white px-6 py-4 border-b border-gray-200">

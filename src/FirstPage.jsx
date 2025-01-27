@@ -43,7 +43,7 @@ const FirstPage = () => {
           {error && <p className="text-red-500">{error}</p>} {/* Display error message */}
           
           <div>
-            <label className="block text-gray-700 font-medium mb-2">Self & Manager Assessment</label>
+            <label className="block text-gray-700 font-medium mb-2">Manager Assessment</label>
             <textarea
               name="selfAndManagerAssessment"
               value={formData.selfAndManagerAssessment}
