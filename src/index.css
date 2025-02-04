@@ -2,7 +2,7 @@
 @import "github-markdown-css/github-markdown.css";
 
 
-/* Smooth scrolling for the chat container */
+
 .overflow-y-auto {
   scroll-behavior: smooth;
 }

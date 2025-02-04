@@ -18,22 +18,22 @@ const Reports = () => {
           <table className="w-full caption-bottom text-sm">
             <thead className="[&_tr]:border-b">
               <tr className="border-b transition-colors hover:bg-gray-50">
-                <th className="h-12 px-4 text-left align-middle font-medium text-gray-500">Employee ID</th>
-                <th className="h-12 px-4 text-left align-middle font-medium text-gray-500">Employee Name</th>
-                <th className="h-12 px-4 text-left align-middle font-medium text-gray-500">Team</th>
-                <th className="h-12 px-4 text-left align-middle font-medium text-gray-500">Analysis Date</th>
-                <th className="h-12 px-4 text-left align-middle font-medium text-gray-500">Report</th>
+                <th className="h-12 px-4 text-left align-middle font-medium text-purple-500">Employee ID</th>
+                <th className="h-12 px-4 text-left align-middle font-medium text-purple-500">Employee Name</th>
+                <th className="h-12 px-4 text-left align-middle font-medium text-purple-500">Team</th>
+                <th className="h-12 px-4 text-left align-middle font-medium text-purple-500">Analysis Date</th>
+                <th className="h-12 px-4 text-left align-middle font-medium text-purple-500">Report</th>
               </tr>
             </thead>
             <tbody className="[&_tr:last-child]:border-0">
               {reports.map((report) => (
-                <tr key={report.id} className="border-b transition-colors hover:bg-gray-50">
+                <tr key={report.id} className="border-b transition-colors hover:bg-purple-50">
                   <td className="p-4 align-middle">{report.id}</td>
                   <td className="p-4 align-middle">{report.name}</td>
                   <td className="p-4 align-middle">{report.team}</td>
                   <td className="p-4 align-middle">{report.date}</td>
                   <td className="p-4 align-middle">
-                    <button className="text-blue-600 hover:text-blue-800">
+                    <button className="text-purple-500 hover:text-pruple-800">
                       <FileText className="h-4 w-4" />
                     </button>
                   </td>

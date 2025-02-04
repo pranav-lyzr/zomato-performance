@@ -32,7 +32,7 @@ const Guidelines = () => {
   
     return (
       <div className="p-8 flex-1 overflow-auto pl-80">
-        <h1 className="text-3xl font-bold mb-6 pl-80">Analysis Guidelines</h1>
+        <h1 className="text-3xl font-bold mb-6 ">Analysis Guidelines</h1>
         
         <div className="grid gap-6">
           {guidelines.map((guideline, index) => (

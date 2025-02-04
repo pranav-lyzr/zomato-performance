@@ -1,31 +1,44 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import FirstPage from "./FirstPage";
-import NextPage from "./NextPage";
-import "./App.css";
-import PerformanceReport from "./PerformanceReport";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import Employee from "./Employee";
 import Coach from "./Coach";
 import Goals from "./Goals";
 import Reports from "./Reports";
 import Guidelines from "./Guidelines";
 import Sidebar from "./Sidebar";
+import Navbar from "./Navbar";
 
 function App() {
+  const [userRole, setUserRole] = useState("employee");
+  const [prevRole, setPrevRole] = useState("employee"); // Track previous role
+  const navigate = useNavigate();
+
+  // Default pages for each role
+  const roleDefaultPages = {
+    employee: "/",
+    admin: "/performance-reports",
+  };
+
+  // Redirect ONLY when role actually changes
+  useEffect(() => {
+    if (userRole !== prevRole) {
+      navigate(roleDefaultPages[userRole]);
+      setPrevRole(userRole); // Update previous role
+    }
+  }, [userRole, prevRole, navigate]);
+
   return (
-    <Router>
+    <>
+      <Navbar onRoleChange={setUserRole} />
+      <Sidebar currentRole={userRole} />
       <Routes>
-        <Route path="/" element={<FirstPage />} />
-        <Route path="/next" element={<NextPage />} />
-        <Route path="/performance-report" element={<><Sidebar/><Employee /></>} />
-        <Route path="/AI-coach" element={<> <Sidebar/> <Coach /> </>} />
-        <Route path="/things-to-work-on" element={<><Sidebar/><Goals /></>} />
-        <Route path="/performance-reports" element={<><Sidebar/><Reports /></>} />
-        <Route path="/analysis-guidelines" element={<><Sidebar/><Guidelines /></>} />
-        {/* <Route path="/user-setup" element={<><Sidebar/><Reports /></>} /> */}
-        {/* <Route path="/employee" element={<Employee />} /> */}
+        <Route path="/" element={<Employee />} />
+        <Route path="/AI-coach" element={<Coach />} />
+        <Route path="/things-to-work-on" element={<Goals />} />
+        <Route path="/performance-reports" element={<Reports />} />
+        <Route path="/analysis-guidelines" element={<Guidelines />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 

@@ -58,7 +58,7 @@ const Coach = () => {
         },
         body: JSON.stringify({
           user_id: "harshit@lyzr.ai",
-          agent_id: "6791e82f61f92e3cfefe1a97",
+          agent_id: "6798d56b8560205374fe47f7",
           session_id: sessionId,
           message: userMessage + employeeData.response,
         }),
@@ -116,15 +116,15 @@ const Coach = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className=" flex flex-col" style={{minHeight: '80vh'}}>
       <h1 className="text-3xl font-bold pl-80 pt-3 pb-0">AI Coach</h1>
       <div className="flex-1 w-full mx-auto p-4 flex flex-col pl-80">
-        <div className="bg-white rounded-lg shadow-lg flex-1 flex flex-col overflow-hidden">
+        <div className="bg-white rounded-lg shadow-lg flex-1 flex flex-col overflow-hidden" >
           <div className="bg-white px-6 py-4 border-b border-gray-200">
             <h1 className="text-xl font-semibold text-gray-800">Chat with Your AI Coach</h1>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-6 space-y-4" style={{ maxHeight: '70vh' }}>
+          <div className="flex-1 overflow-y-auto p-6 space-y-4" style={{ maxHeight: '50vh' }}>
             {messages.map((message) => (
               <div
                 key={message.id}
